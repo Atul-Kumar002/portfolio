@@ -41,6 +41,65 @@
       animation: matrixFall linear infinite;
     }
 
+    .contact-section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      margin-top: 4rem;
+      border-radius: 10px;
+      backdrop-filter: blur(15px);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #60a5fa;
+    }
+
+    /* Contact Form Styles */
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: rgba(96, 165, 250, 0.1);
+      border: 2px solid rgba(96, 165, 250, 0.3);
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+    }
+
+    /* Button Style */
+    .contact-form button {
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      background: rgba(96, 165, 250, 0.1);
+      color: white;
+      border: 3px solid #60a5fa;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+      transform: translateY(-8px) scale(1.08);
+      box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
+    }
+
+
     @keyframes matrixFall {
       0% {
         top: -50px;
@@ -299,14 +358,18 @@
     }
 
     /* Interactive Main Heading */
+    /* Main Heading */
     .main-heading {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-family: 'Times New Roman', serif, sans-serif;
+      /* Set Times New Roman as the first option */
+      font-size: clamp(2rem, 8vw, 3rem);
       font-weight: 800;
       margin-bottom: 1.5rem;
       background: linear-gradient(45deg, #ffffff, #60a5fa, #a78bfa, #f59e0b, #ef4444);
       background-size: 400% 400%;
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: rgb(255, 255, 255);
+      /* Set text color to white */
       background-clip: text;
       animation: fadeInUp 1s ease-out, rainbowShift 6s ease-in-out infinite;
       transition: all 0.4s ease;
@@ -314,6 +377,8 @@
       position: relative;
       text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
     }
+
+
 
     .main-heading:hover {
       transform: scale(1.08);
@@ -1018,7 +1083,19 @@
     </div>
   </div>
 
-  <script>
+  <!-- Contact Section -->
+  <div class="contact-section" id="contact">
+    <h2 class="contact-title">Get in Touch</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" name="name" id="name" placeholder="Your Full Name" required>
+      <input type="email" name="email" id="email" placeholder="Your Email Address" required>
+      <textarea name="message" id="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit" id="submit-button">Send Message</button>
+    </form>
+  </div>
+
+
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js">
     // Navigation function
     function navigateTo(section) {
       // Remove active class from all options
@@ -1081,12 +1158,10 @@
 
     // Enhanced Typewriter effect - SLOWER VERSION
     const words = [
-      "Chemical Engineering Student",
       "Data Analytics Enthusiast",
       "Web Developer in Progress",
       "Problem Solver",
-      "Innovation Seeker",
-      "Future Tech Leader"
+      "Innovation Seeker"
     ];
 
     let currentWordIndex = 0;
@@ -1105,7 +1180,7 @@
       } else {
         // Add characters
         currentText = currentWord.substring(0, currentText.length + 1);
-        typeSpeed = 150; // Slower typing speed
+        typeSpeed = 50; // Slower typing speed
       }
 
       typewriterElement.textContent = currentText;
@@ -1236,6 +1311,28 @@
       }, 600);
     }
 
+
+    // Form Validation (Optional Enhancement)
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('.contact-form');
+
+      form.addEventListener('submit', function (event) {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // Basic validation to check if fields are filled
+        if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
+          event.preventDefault();
+          alert("Please fill out all fields before submitting.");
+        } else {
+          // Optional: You can add confirmation or additional actions here
+          alert("Message sent successfully! Thank you for contacting me.");
+        }
+      });
+    });
+
+
     // Profile image fallback
     function showFallback() {
       document.getElementById('profileImg').style.display = 'none';
@@ -1268,6 +1365,34 @@
         setTimeout(() => particle.remove(), 40000);
       }, 1500);
     }
+
+    // Initialize EmailJS
+    (function () {
+      emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS user ID
+    })();
+
+    // Handle form submission
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+
+      // Send email through EmailJS
+      emailjs.send('service_ahzpwuq', 'template_a26iket', formData)
+        .then(function (response) {
+          console.log('Success:', response);
+          alert('Your message has been sent!');
+        }, function (error) {
+          console.error('Error:', error);
+          alert('Something went wrong. Please try again later.');
+        });
+    });
+
 
     // Initialize everything
     window.addEventListener('load', () => {
