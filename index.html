@@ -4,8 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atul Kumar - Interactive Portfolio</title>
+  <title>Atul Kumar - Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("M0LNCyj31ZYRz6sfk");
+  </script>
   <style>
     * {
       margin: 0;
@@ -1319,7 +1324,7 @@
     let currentWordIndex = 0;
     let currentText = "";
     let isDeleting = false;
-    let typeSpeed = 100; // Increased from 100 to 150 for slower typing
+    let typeSpeed = 100;
     const typewriterElement = document.getElementById('typewriter');
 
     function typeWriter() {
@@ -1328,11 +1333,11 @@
       if (isDeleting) {
         // Remove characters
         currentText = currentWord.substring(0, currentText.length - 1);
-        typeSpeed = 70; // Speed up deletion slightly
+        typeSpeed = 70;
       } else {
         // Add characters
         currentText = currentWord.substring(0, currentText.length + 1);
-        typeSpeed = 70; // Slower typing speed
+        typeSpeed = 70;
       }
 
       typewriterElement.textContent = currentText;
@@ -1340,13 +1345,13 @@
       // Check if word is complete
       if (!isDeleting && currentText === currentWord) {
         // Pause at end of word
-        typeSpeed = 2000; // Keep the same pause duration
+        typeSpeed = 2000;
         isDeleting = true;
       } else if (isDeleting && currentText === '') {
         // Move to next word
         isDeleting = false;
         currentWordIndex = (currentWordIndex + 1) % words.length;
-        typeSpeed = 500; // Pause before starting next word
+        typeSpeed = 500;
       }
 
       setTimeout(typeWriter, typeSpeed);
@@ -1496,7 +1501,8 @@
       }, 1500);
     }
 
-    // Contact form handling
+    // Contact form handling with Formspree
+    // Contact form handling with EmailJS
     document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1507,22 +1513,64 @@
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
-      // Simulate form submission
-      setTimeout(() => {
-        formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
-        formMessage.className = 'form-message success';
+      // Send email using EmailJS
+      emailjs.sendForm('service_ahzpwuq', 'template_a26iket', this)
+        .then(function () {
+          formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+          formMessage.className = 'form-message success';
 
-        // Reset form
-        this.reset();
-        submitBtn.textContent = 'Send Message';
-        submitBtn.disabled = false;
+          // Reset form
+          e.target.reset();
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
 
-        // Hide message after 5 seconds
-        setTimeout(() => {
-          formMessage.className = 'form-message';
-        }, 5000);
-      }, 1500);
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            formMessage.className = 'form-message';
+          }, 5000);
+        }, function (error) {
+          formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
+          formMessage.className = 'form-message error';
+
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+        });
     });
+
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formMessage = document.getElementById('formMessage');
+      const submitBtn = this.querySelector('.submit-btn');
+
+      // Show loading state
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      // Send email using EmailJS - REPLACE WITH YOUR ACTUAL IDs
+      emailjs.sendForm('service_ahzpwuq', 'template_a26iket', this)
+        .then(function () {
+          formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+          formMessage.className = 'form-message success';
+
+          // Reset form
+          e.target.reset();
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            formMessage.className = 'form-message';
+          }, 5000);
+        }, function (error) {
+          formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
+          formMessage.className = 'form-message error';
+
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+        });
+    });
+
 
     // Initialize everything
     window.addEventListener('load', () => {
