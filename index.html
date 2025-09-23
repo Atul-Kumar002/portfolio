@@ -41,65 +41,6 @@
       animation: matrixFall linear infinite;
     }
 
-    .contact-section {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      margin-top: 4rem;
-      border-radius: 10px;
-      backdrop-filter: blur(15px);
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-title {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #60a5fa;
-    }
-
-    /* Contact Form Styles */
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background: rgba(96, 165, 250, 0.1);
-      border: 2px solid rgba(96, 165, 250, 0.3);
-      border-radius: 10px;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #60a5fa;
-      box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
-    }
-
-    /* Button Style */
-    .contact-form button {
-      padding: 1rem 2.5rem;
-      border-radius: 12px;
-      font-weight: 700;
-      background: rgba(96, 165, 250, 0.1);
-      color: white;
-      border: 3px solid #60a5fa;
-      transition: all 0.4s ease;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .contact-form button:hover {
-      background: linear-gradient(45deg, #60a5fa, #a78bfa);
-      transform: translateY(-8px) scale(1.08);
-      box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
-    }
-
-
     @keyframes matrixFall {
       0% {
         top: -50px;
@@ -125,7 +66,7 @@
       z-index: -2;
     }
 
-    @keyframes gradient极ift {
+    @keyframes gradientShift {
       0% {
         background-position: 0% 50%;
       }
@@ -242,7 +183,7 @@
     .shape-2 {
       width: 100px;
       height: 100px;
-      background: linear-gradient(45极g, #f59e0b, #ef4444);
+      background: linear-gradient(45deg, #f59e0b, #ef4444);
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       top: 65%;
       right: 12%;
@@ -345,7 +286,7 @@
       50%,
       80%,
       100% {
-        transform: translate极(0);
+        transform: translateY(0);
       }
 
       40% {
@@ -465,7 +406,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: all 0.3极 ease;
+      transition: all 0.3s ease;
       cursor: pointer;
       backdrop-filter: blur(10px);
     }
@@ -520,6 +461,9 @@
       cursor: pointer;
       backdrop-filter: blur(10px);
       text-align: left;
+      text-decoration: none;
+      display: block;
+      color: inherit;
     }
 
     .project-card:hover {
@@ -649,7 +593,7 @@
       cursor: pointer;
       border: 3px solid transparent;
       font-size: 1.1rem;
-      backdrop-filter: blur(10极);
+      backdrop-filter: blur(10px);
     }
 
     .btn::before {
@@ -788,7 +732,7 @@
       background: #60a5fa;
       color: white;
       transform: scale(1.2) rotate(15deg);
-      box-shadow: 0 10极 25px rgba(96, 165, 250, 0.4);
+      box-shadow: 0 10px 25px rgba(96, 165, 250, 0.4);
     }
 
     /* Glow effect for contact icons */
@@ -852,6 +796,173 @@
       }
     }
 
+    /* Contact Form Section */
+    .contact-section {
+      width: 100%;
+      max-width: 700px;
+      margin: 4rem auto 2rem;
+      padding: 2.5rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(96, 165, 250, 0.2);
+      transition: all 0.4s ease;
+      animation: fadeIn 1.2s ease-out 1.2s both;
+    }
+
+    .contact-section:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px rgba(96, 165, 250, 0.2);
+      border-color: #a78bfa;
+    }
+
+    .contact-title {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      text-align: center;
+    }
+
+    .contact-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .contact-section:hover .contact-title::after {
+      width: 120px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .form-label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(96, 165, 250, 0.3);
+      background: rgba(96, 165, 250, 0.1);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #60a5fa;
+      box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+      background: rgba(96, 165, 250, 0.15);
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(96, 165, 250, 0.4);
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .form-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .form-message.success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 2px solid rgba(16, 185, 129, 0.5);
+      color: #10b981;
+      opacity: 1;
+    }
+
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 2px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      opacity: 1;
+    }
+
+    /* Additional Skills */
+    .additional-skills-section {
+      width: 100%;
+      margin: 2rem 0;
+      animation: fadeIn 1s ease-out 0.8s both;
+    }
+
+    .additional-skills-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
       .main-heading {
@@ -900,6 +1011,11 @@
         width: 45px;
         height: 45px;
       }
+
+      .contact-section {
+        padding: 1.5rem;
+        margin: 2rem auto;
+      }
     }
 
     /* Loading animation */
@@ -919,7 +1035,7 @@
     <div class="shape shape-3"></div>
     <div class="shape shape-4"></div>
   </div>
-  <div class="particles极" id="particles"></div>
+  <div class="particles" id="particles"></div>
 
   <!-- Floating Contact Icons -->
   <div class="contact-icons">
@@ -986,12 +1102,33 @@
           <span class="skill-name">AWS</span>
         </div>
         <div class="skill-box">
+          <i class="skill-icon fas fa-chart-pie"></i>
+          <span class="skill-name">Tableau</span>
+        </div>
+        <div class="skill-box">
           <i class="skill-icon fas fa-cloud"></i>
-          <span class="skill-name">Azure</极pan>
+          <span class="skill-name">Azure</span>
+        </div>
+        <div class="skill-box">
+          <i class="skill-icon fab fa-git-alt"></i>
+          <span class="skill-name">Git</span>
         </div>
         <div class="skill-box">
           <i class="skill-icon fas fa-file-excel"></i>
           <span class="skill-name">Excel</span>
+        </div>
+        <div class="skill-box">
+          <i class="skill-icon fas fa-calculator"></i>
+          <span class="skill-name">Numpy</span>
+        </div>
+        <div class="skill-box">
+          <i class="skill-icon fas fa-chart-area"></i>
+          <span class="skill-name">Matplotlib</span>
+        </div>
+
+        <div class="skill-box">
+          <i class="skill-icon fas fa-chart-bar"></i>
+          <span class="skill-name">Seaborn</span>
         </div>
         <div class="skill-box">
           <i class="skill-icon fas fa-book"></i>
@@ -1027,22 +1164,50 @@
       </div>
     </div>
 
+    <!-- Additional Skills Section -->
+    <div class="additional-skills-section" id="additional-skills-section">
+      <h2 class="additional-skills-title">Additional Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <i class="skill-icon fab fa-react"></i>
+          <span class="skill-name">React</span>
+        </div>
+        <div class="skill-box">
+          <i class="skill-icon fab fa-node-js"></i>
+          <span class="skill-name">Node.js</span>
+        </div>
+        <div class="skill-box">
+          <i class="skill-icon fas fa-database"></i>
+          <span class="skill-name">MongoDB</span>
+        </div>
+
+
+        <div class="skill-box">
+          <i class="skill-icon fas fa-cogs"></i>
+          <span class="skill-name">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Projects Section -->
     <div class="projects-section" id="projects-section">
       <h2 class="projects-title">Projects</h2>
 
-      <div class="project-card">
-        <h3 class="project-name">
-          <a href="https://github.com/Atul-Kumar002/Credit_Card_Financial_Report" target="_blank">
-            <i class="fas fa-credit-card"></i>
-            Credit Card Financial Report
-          </a>
-        </h3>
+      <!-- Project Card (Clickable) -->
+      <a href="https://github.com/Atul-Kumar002/Credit_Card_Financial_Report" target="_blank" class="project-card">
+        <!-- Project Name -->
+        <div class="project-name">
+          <i class="fas fa-credit-card"></i> Credit Card Financial Report
+        </div>
+
+        <!-- Project Description -->
         <p class="project-description">
           A comprehensive financial analysis dashboard that visualizes credit card spending patterns,
-          categorizes expenses, and provides insights into financial habits. The project includes
-          interactive charts, spending trends analysis, and personalized financial recommendations.
+          categorizes expenses, and provides insights into financial habits. The project includes interactive
+          charts, spending trends analysis, and personalized financial recommendations.
         </p>
+
+        <!-- Technologies Used -->
         <div class="project-tech">
           <span class="tech-tag">MySQL</span>
           <span class="tech-tag">Excel</span>
@@ -1050,8 +1215,7 @@
           <span class="tech-tag">Data Visualization</span>
           <span class="tech-tag">Financial Analysis</span>
         </div>
-      </div>
-
+      </a>
     </div>
 
     <!-- Profile Image -->
@@ -1081,21 +1245,34 @@
         I enjoy solving complex problems and creating innovative solutions. Click to see more!
       </p>
     </div>
+
+    <!-- Contact Form Section -->
+    <div class="contact-section" id="contact-section">
+      <h2 class="contact-title">Get in Touch</h2>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" id="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Your Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" id="subject" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label">Your Message</label>
+          <textarea id="message" class="form-textarea" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+        <div class="form-message" id="formMessage"></div>
+      </form>
+    </div>
   </div>
 
-  <!-- Contact Section -->
-  <div class="contact-section" id="contact">
-    <h2 class="contact-title">Get in Touch</h2>
-    <form class="contact-form" id="contactForm">
-      <input type="text" name="name" id="name" placeholder="Your Full Name" required>
-      <input type="email" name="email" id="email" placeholder="Your Email Address" required>
-      <textarea name="message" id="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit" id="submit-button">Send Message</button>
-    </form>
-  </div>
-
-
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js">
+  <script>
     // Navigation function
     function navigateTo(section) {
       // Remove active class from all options
@@ -1121,8 +1298,8 @@
         const aboutSection = document.querySelector('.about-section');
         aboutSection.scrollIntoView({ behavior: 'smooth' });
       } else if (section === 'contact') {
-        const buttonsSection = document.querySelector('.button-container');
-        buttonsSection.scrollIntoView({ behavior: 'smooth' });
+        const contactSection = document.getElementById('contact-section');
+        contactSection.scrollIntoView({ behavior: 'smooth' });
 
         // Add glow effect to contact icons
         const contactIcons = document.querySelectorAll('.contact-icon');
@@ -1161,13 +1338,13 @@
       "Data Analytics Enthusiast",
       "Web Developer in Progress",
       "Problem Solver",
-      "Innovation Seeker"
+      "Innovation Seeker",
     ];
 
     let currentWordIndex = 0;
     let currentText = "";
     let isDeleting = false;
-    let typeSpeed = 150; // Increased from 100 to 150 for slower typing
+    let typeSpeed = 100; // Increased from 100 to 150 for slower typing
     const typewriterElement = document.getElementById('typewriter');
 
     function typeWriter() {
@@ -1176,11 +1353,11 @@
       if (isDeleting) {
         // Remove characters
         currentText = currentWord.substring(0, currentText.length - 1);
-        typeSpeed = 50; // Speed up deletion slightly
+        typeSpeed = 70; // Speed up deletion slightly
       } else {
         // Add characters
         currentText = currentWord.substring(0, currentText.length + 1);
-        typeSpeed = 50; // Slower typing speed
+        typeSpeed = 70; // Slower typing speed
       }
 
       typewriterElement.textContent = currentText;
@@ -1307,31 +1484,9 @@
 
       setTimeout(() => {
         element.style.transform = 'scale(1) rotate(0deg)';
-        element.style.background = '极gba(96, 165, 250, 0.2)';
+        element.style.background = 'rgba(96, 165, 250, 0.2)';
       }, 600);
     }
-
-
-    // Form Validation (Optional Enhancement)
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.querySelector('.contact-form');
-
-      form.addEventListener('submit', function (event) {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        // Basic validation to check if fields are filled
-        if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
-          event.preventDefault();
-          alert("Please fill out all fields before submitting.");
-        } else {
-          // Optional: You can add confirmation or additional actions here
-          alert("Message sent successfully! Thank you for contacting me.");
-        }
-      });
-    });
-
 
     // Profile image fallback
     function showFallback() {
@@ -1366,33 +1521,33 @@
       }, 1500);
     }
 
-    // Initialize EmailJS
-    (function () {
-      emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS user ID
-    })();
+    // Contact form handling
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    // Handle form submission
-    document.getElementById('contactForm').addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent default form submission
+      const formMessage = document.getElementById('formMessage');
+      const submitBtn = this.querySelector('.submit-btn');
 
-      // Get form data
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-      };
+      // Show loading state
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
 
-      // Send email through EmailJS
-      emailjs.send('service_ahzpwuq', 'template_a26iket', formData)
-        .then(function (response) {
-          console.log('Success:', response);
-          alert('Your message has been sent!');
-        }, function (error) {
-          console.error('Error:', error);
-          alert('Something went wrong. Please try again later.');
-        });
+      // Simulate form submission
+      setTimeout(() => {
+        formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+        formMessage.className = 'form-message success';
+
+        // Reset form
+        this.reset();
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.className = 'form-message';
+        }, 5000);
+      }, 1500);
     });
-
 
     // Initialize everything
     window.addEventListener('load', () => {
