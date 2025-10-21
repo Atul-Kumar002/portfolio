@@ -304,10 +304,8 @@
     }
 
     /* Interactive Main Heading */
-    /* Main Heading */
     .main-heading {
       font-family: 'Times New Roman', serif, sans-serif;
-      /* Set Times New Roman as the first option */
       font-size: clamp(2rem, 8vw, 3rem);
       font-weight: 800;
       margin-bottom: 1.5rem;
@@ -315,7 +313,6 @@
       background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: rgb(255, 255, 255);
-      /* Set text color to white */
       background-clip: text;
       animation: fadeInUp 1s ease-out, rainbowShift 6s ease-in-out infinite;
       transition: all 0.4s ease;
@@ -323,8 +320,6 @@
       position: relative;
       text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
     }
-
-
 
     .main-heading:hover {
       transform: scale(1.08);
@@ -1173,7 +1168,32 @@
     <div class="projects-section" id="projects-section">
       <h2 class="projects-title">Projects</h2>
 
-      <!-- Project Card (Clickable) -->
+      <!-- Project Card 2: Excel Hyperlink Converter Bot -->
+      <a href="https://github.com/Atul-Kumar002/Excel-Hyperlink-Converter-Bot" target="_blank" class="project-card">
+        <!-- Project Name -->
+        <div class="project-name">
+          <i class="fas fa-robot"></i> Excel Hyperlink Converter Bot
+        </div>
+
+        <!-- Project Description -->
+        <p class="project-description">
+          An intelligent automation bot that converts Excel hyperlinks into clickable URLs and extracts 
+          embedded web links from Excel files. The bot handles multiple file formats, batch processing, 
+          and provides detailed conversion reports with error handling for corrupted or invalid links.
+        </p>
+
+        <!-- Technologies Used -->
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">OpenPyXL</span>
+          <span class="tech-tag">Pandas</span>
+          <span class="tech-tag">Automation</span>
+          <span class="tech-tag">Excel Processing</span>
+          <span class="tech-tag">Data Extraction</span>
+        </div>
+      </a>
+
+      <!-- Project Card 1: Credit Card Financial Report -->
       <a href="https://github.com/Atul-Kumar002/Credit_Card_Financial_Report" target="_blank" class="project-card">
         <!-- Project Name -->
         <div class="project-name">
@@ -1196,7 +1216,7 @@
           <span class="tech-tag">Financial Analysis</span>
         </div>
       </a>
-    </div>
+
 
     <!-- Profile Image -->
     <div class="profile-container" onclick="triggerProfileEffect()">
@@ -1232,19 +1252,19 @@
       <form class="contact-form" id="contactForm">
         <div class="form-group">
           <label for="name" class="form-label">Your Name</label>
-          <input type="text" id="name" class="form-input" required>
+          <input type="text" id="name" name="from_name" class="form-input" required>
         </div>
         <div class="form-group">
           <label for="email" class="form-label">Your Email</label>
-          <input type="email" id="email" class="form-input" required>
+          <input type="email" id="email" name="from_email" class="form-input" required>
         </div>
         <div class="form-group">
           <label for="subject" class="form-label">Subject</label>
-          <input type="text" id="subject" class="form-input" required>
+          <input type="text" id="subject" name="subject" class="form-input" required>
         </div>
         <div class="form-group">
           <label for="message" class="form-label">Your Message</label>
-          <textarea id="message" class="form-textarea" required></textarea>
+          <textarea id="message" name="message" class="form-textarea" required></textarea>
         </div>
         <button type="submit" class="submit-btn">Send Message</button>
         <div class="form-message" id="formMessage"></div>
@@ -1501,7 +1521,6 @@
       }, 1500);
     }
 
-    // Contact form handling with Formspree
     // Contact form handling with EmailJS
     document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1537,41 +1556,6 @@
         });
     });
 
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const formMessage = document.getElementById('formMessage');
-      const submitBtn = this.querySelector('.submit-btn');
-
-      // Show loading state
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-
-      // Send email using EmailJS - REPLACE WITH YOUR ACTUAL IDs
-      emailjs.sendForm('service_ahzpwuq', 'template_a26iket', this)
-        .then(function () {
-          formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-          formMessage.className = 'form-message success';
-
-          // Reset form
-          e.target.reset();
-          submitBtn.textContent = 'Send Message';
-          submitBtn.disabled = false;
-
-          // Hide message after 5 seconds
-          setTimeout(() => {
-            formMessage.className = 'form-message';
-          }, 5000);
-        }, function (error) {
-          formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
-          formMessage.className = 'form-message error';
-
-          submitBtn.textContent = 'Send Message';
-          submitBtn.disabled = false;
-        });
-    });
-
-
     // Initialize everything
     window.addEventListener('load', () => {
       document.querySelector('.container').classList.remove('loading');
@@ -1584,5 +1568,4 @@
     document.documentElement.style.scrollBehavior = 'smooth';
   </script>
 </body>
-
 </html>
