@@ -210,9 +210,38 @@ if (contactForm) {
   });
 }
 
+// BACK TO TOP BUTTON
+const backToTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+});
+
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
 // Initialize animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   setupRevealAnimations();
+  
+  // HIDE PRELOADER
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    window.addEventListener("load", () => {
+      preloader.style.opacity = "0";
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 500);
+    });
+  }
   
   // Trigger initial scroll check for navbar
   if (window.scrollY > 50) {
